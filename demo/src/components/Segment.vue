@@ -58,12 +58,14 @@ export default {
         timeChange2(t) {
             this.time2 = t
         },
-        click_timeSegments(arr) {
-            console.log('onClickTimeSegments', arr)
-            alert('点击了：' + arr[0].name)
+        click_timeSegments(arr, timeStamp) {
+            console.log('onClickTimeSegments', arr, timeStamp)
+            this.time2 = timeStamp
+            // alert('点击了：' + arr[0].name)
         },
         onClickTimeLine(...args) {
             console.log('onClickTimeLine', args)
+            this.time2 = args[0]
         },
         onDragTimeChange(...args) {
             console.log('onDragTimeChange', args)

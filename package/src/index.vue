@@ -792,11 +792,17 @@ export default {
      */
     onClick(x, y) {
       let timeSegments = this.getClickTimeSegments(x, y)
+      const PX_PER_MS = this.width / this.totalMS // px/ms
+      let time = this.startTimestamp + x / PX_PER_MS
+      let date = dayjs(time).format('YYYY-MM-DD HH:mm:ss')
       if (timeSegments && timeSegments.length > 0) {
-        this.$emit('click_timeSegments', timeSegments)
+        this.$emit('click_timeSegments', timeSegments, time)
       } else {
-        this.onCanvasClick(x)
+        // this.onCanvasClick(time, date, x)
+        this.$emit('click_timeline', time, date, x)
       }
+      // TODO:: 合并点击时间段和时间线的事件
+      // this.$emit("onClickTimeLine", timeSegments, time, date, x)
     },
 
     /**
